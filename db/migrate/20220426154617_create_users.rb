@@ -28,9 +28,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
       ## User Info
-      t.string :name
-      t.string :nickname
-      t.string :image
+      t.string :first_name
+      t.string :last_name
+      t.date :date_of_birth
       t.string :email
 
       ## Tokens
