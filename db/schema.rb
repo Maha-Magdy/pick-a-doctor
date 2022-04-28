@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_26_160939) do
   end
 
   create_table "doctors", force: :cascade do |t|
-    t.bigint "specializations_id", null: false
+    t.bigint "specialization_id", null: false
     t.string "first_name"
     t.string "last_name"
     t.string "email"
@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_26_160939) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["specializations_id"], name: "index_doctors_on_specializations_id"
+    t.index ["specialization_id"], name: "index_doctors_on_specialization_id"
   end
 
   create_table "specializations", force: :cascade do |t|
@@ -83,5 +83,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_26_160939) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "users"
-  add_foreign_key "doctors", "specializations", column: "specializations_id"
+  add_foreign_key "doctors", "specializations"
 end
