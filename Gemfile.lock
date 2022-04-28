@@ -7,6 +7,14 @@ GIT
       devise (> 3.5.2, < 5)
       rails (>= 4.2.0, < 7.1)
 
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: b78a47e64d79863dfb2a987c84157a8b0de3a037
+  branch: master
+  specs:
+    faker (2.20.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -246,6 +254,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise_token_auth!
+  faker!
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
