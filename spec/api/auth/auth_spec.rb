@@ -8,8 +8,8 @@ RSpec.describe 'api/auth', type: :request do
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: { id: { type: :integer }, first_name: { type: :string }, last_name: { type: :string },
-                      email: { type: :string, format: :email }, password: { type: :string }, password_confirmation: { type: :string },
-                      date_of_birth: { type: :string, format: :date } },
+                      email: { type: :string, format: :email }, password: { type: :string },
+                      password_confirmation: { type: :string }, date_of_birth: { type: :string, format: :date } },
         required: %w[id first_name last_name email password password_confirmation date_of_birth]
       }
       response '200', 'success' do
@@ -31,7 +31,7 @@ RSpec.describe 'api/auth', type: :request do
       consumes 'application/json'
       parameter name: :user, in: :body, schema: {
         type: :object,
-        properties: { email: { type: :string, format: :email }, password: { type: :string }},
+        properties: { email: { type: :string, format: :email }, password: { type: :string } },
         required: %w[email password]
       }
       response '200', 'success' do
