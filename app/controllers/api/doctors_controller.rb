@@ -5,6 +5,8 @@ class Api::DoctorsController < ApplicationController
   end
 
   def show
+    @doctor = Doctor.find(params[:id])
+    render json: @doctor
   end
 
   def create
@@ -14,5 +16,11 @@ class Api::DoctorsController < ApplicationController
   end
 
   def delete
+  end
+
+  private
+
+  def doc_params
+    params.permit(:specialization_id, :first_name, :last_name, :email, :phone, :address)
   end
 end
