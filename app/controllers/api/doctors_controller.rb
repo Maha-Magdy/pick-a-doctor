@@ -15,7 +15,7 @@ class Api::DoctorsController < ApplicationController
     if doctor.valid?
       doctor.save
       respond_to do |format|
-        msg = { status: 'ok', message: 'Success!' }
+        msg = { status: 'ok', message: 'Created Successfully.' }
         format.json { render json: msg } # don't do msg.to_json
       end
     else
@@ -29,7 +29,13 @@ class Api::DoctorsController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
+    @doctor = Doctor.find(params[:id])
+    @doctor.destroy
+    respond_to do |format|
+      msg = { status: 'ok', message: 'Deletion Successful.' }
+      format.json { render json: msg } # don't do msg.to_json
+    end
   end
 
   private
