@@ -10,8 +10,7 @@ class Api::DoctorsController < ApplicationController
   end
 
   def create
-    doctor = Doctor.new(specialization_id: doc_params[:specialization_id], first_name: doc_params[:first_name], last_name: doc_params[:last_name],
-      email: doc_params[:email], phone: doc_params[:phone], address: doc_params[:address])
+    doctor = Doctor.new(doc_params)
     if doctor.valid?
       doctor.save
       respond_to do |format|
@@ -20,13 +19,25 @@ class Api::DoctorsController < ApplicationController
       end
     else
       respond_to do |format|
-        msg = { status: 'fail', message: 'Failed!' }
+        msg = { status: 'fail', message: 'Failed.' }
         format.json { render json: msg } # don't do msg.to_json
       end
     end
   end
 
   def update
+    @doctor = Doctor.find(params[:id])
+    if @doctor.update(doc_params)
+      respond_to do |format|
+        msg = { status: 'ok', message: 'Updated Successfully.' }
+        format.json { render json: msg } # don't do msg.to_json
+      end
+    else
+      respond_to do |format|
+        msg = { status: 'fail', message: 'Update Failed' }
+        format.json { render json: msg } # don't do msg.to_json
+      end
+    end
   end
 
   def destroy
