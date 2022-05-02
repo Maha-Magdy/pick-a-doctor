@@ -105,6 +105,7 @@ GEM
       reline (>= 0.3.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
+    localhost (1.1.9)
     loofah (2.16.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -246,6 +247,7 @@ DEPENDENCIES
   bootsnap
   debug
   devise_token_auth!
+  localhost
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
