@@ -1,7 +1,7 @@
-class SpecializationsController < ActionController::API
+class Api::SpecializationsController < ApplicationController
   include Response
 
-  before_action :authenticate_user!
+  before_action :authenticate_api_user!
 
   def new
     @specialization = Specialization.new
