@@ -4,6 +4,7 @@ info:
   title: API V1
   version: v1
 paths:
+<<<<<<< HEAD
   "/api/specializations":
     get:
       summary: Retrives all specializations
@@ -157,3 +158,70 @@ servers:
   variables:
     defaultHost:
       default: www.example.com
+=======
+  "/api/auth":
+    post:
+      summary: User sign-up
+      parameters: []
+      responses:
+        "200":
+          description: success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+                date_of_birth:
+                  type: string
+                  format: date
+              required:
+                - id
+                - first_name
+                - last_name
+                - email
+                - password
+                - password_confirmation
+                - date_of_birth
+  "/api/auth/sign_in":
+    post:
+      summary: User sign-in
+      parameters: []
+      responses:
+        "200":
+          description: success
+        "401":
+          description: fail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+              required:
+                - email
+                - password
+servers:
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: www.example.com
+>>>>>>> dev
