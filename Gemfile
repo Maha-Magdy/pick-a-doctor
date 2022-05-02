@@ -41,6 +41,7 @@ gem 'rack-cors'
 
 # Devise Token Auth for Authentication includes both devise and ominiauth
 gem 'devise_token_auth', git: 'git@github.com:lynndylanhurley/devise_token_auth.git'
+gem 'omniauth'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
