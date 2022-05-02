@@ -10,4 +10,5 @@ class ApplicationController < ActionController::API
     devise_parameter_sanitizer.permit(:sign_up,
                                       keys: %i[first_name last_name password password_confirmation email date_of_birth])
   end
+  include ActionController::MimeResponds
 end
