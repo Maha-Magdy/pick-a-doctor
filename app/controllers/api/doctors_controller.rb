@@ -14,13 +14,13 @@ class Api::DoctorsController < ApplicationController
     if doctor.valid?
       doctor.save
       respond_to do |format|
-        msg = { status: 'ok', message: 'Created Successfully.' }
-        format.json { render json: msg } # don't do msg.to_json
+        msg = { success: true, message: 'Created Successfully.', data: doctor }
+        format.json { render json: msg, status: :ok } # don't do msg.to_json
       end
     else
       respond_to do |format|
-        msg = { status: 'fail', message: 'Failed.' }
-        format.json { render json: msg } # don't do msg.to_json
+        msg = { success: false, errors: doctor.errors.full_messages }
+        format.json { render json: msg, status: 422 } # don't do msg.to_json
       end
     end
   end
