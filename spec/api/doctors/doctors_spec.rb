@@ -22,7 +22,7 @@ RSpec.describe '/api/doctors', type: :request do
                       email: { type: :string, format: :email }, address: { type: :string } },
         required: %w[id specialization_id first_name last_name email address]
       }
-      response '200', 'success' do
+      response '201', 'created' do
         let(:doctor) do {
           specialization_id: Faker::Number.between(from: 1, to: 4),
           first_name: Faker::Name.first_name,
