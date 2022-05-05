@@ -1,52 +1,44 @@
 class Api::DoctorsController < ApplicationController
   def index
     @doctors = Doctor.all.includes(:appointments)
-    render json: @doctors
+    msg = { success: true, data: @doctors }
+    render json: msg, status: :ok
   end
 
   def show
     @doctor = Doctor.find(params[:id])
-    render json: @doctor
+    msg = { success: true, data: @doctor }
+    render json: msg, status: :ok
   end
 
   def create
     doctor = Doctor.new(doc_params)
     if doctor.valid?
       doctor.save
-      respond_to do |format|
-        msg = { success: true, message: 'Created Successfully.', data: doctor }
-        format.json { render json: msg, status: :ok } # don't do msg.to_json
-      end
+      msg = { success: true, data: doctor }
+      render json: msg, status: :created
     else
-      respond_to do |format|
-        msg = { success: false, errors: doctor.errors.full_messages }
-        format.json { render json: msg, status: 422 } # don't do msg.to_json
-      end
+      msg = { success: false, errors: doctor.errors.full_messages }
+      render json: msg, status: :unprocessable_entity
     end
   end
 
   def update
     @doctor = Doctor.find(params[:id])
     if @doctor.update(doc_params)
-      respond_to do |format|
-        msg = { status: 'ok', message: 'Updated Successfully.' }
-        format.json { render json: msg } # don't do msg.to_json
-      end
+      msg = { success: true, data: @doctor }
+      render json: msg, status: :accepted
     else
-      respond_to do |format|
-        msg = { status: 'fail', message: 'Update Failed' }
-        format.json { render json: msg } # don't do msg.to_json
-      end
+      msg = { success: false, errors: @doctor.errors.full_messages }
+      render json: msg, status: :unprocessable_entity
     end
   end
 
   def destroy
     @doctor = Doctor.find(params[:id])
     @doctor.destroy
-    respond_to do |format|
-      msg = { status: 'ok', message: 'Deletion Successful.' }
-      format.json { render json: msg } # don't do msg.to_json
-    end
+    msg = { success: true, message: 'Deletion Successful.' }
+    render json: msg, status: :ok
   end
 
   private
