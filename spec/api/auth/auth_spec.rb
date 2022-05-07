@@ -8,24 +8,24 @@ RSpec.describe 'api/auth', type: :request do
   path '/api/auth' do
     post('User sign-up') do
       consumes 'application/json'
+      tags 'Authentication'
       parameter name: :user, in: :body, schema: {
         type: :object,
-        properties: { id: { type: :integer }, first_name: { type: :string }, last_name: { type: :string },
+        properties: { first_name: { type: :string }, last_name: { type: :string },
                       email: { type: :string, format: :email }, password: { type: :string },
                       password_confirmation: { type: :string }, date_of_birth: { type: :string, format: :date } },
-        required: %w[id first_name last_name email password password_confirmation date_of_birth]
+        required: %w[first_name last_name email password password_confirmation date_of_birth]
       }
       response '200', 'success' do
         let(:user) do
-          { email: 'test@example.com', password: '1234567', password_confirmation: '1234567', first_name: 'User2',
-            last_name: 'Test2', date_of_birth: '12-10-2000' }
+          { email: 'user@email.com', password: '1234567', password_confirmation: '1234567',
+            first_name: 'First', last_name: 'Last', date_of_birth: '12-10-2000' }
         end
         run_test!
       end
       response '422', 'error' do
         let(:user) do
-          { email: 'test@example.com', password_confirmation: '1234567', first_name: 'User2',
-            last_name: 'Test2', date_of_birth: '12-10-2000' }
+          { email: 'user@email.com', first_name: 'First', last_name: 'Last', date_of_birth: '12-10-2000' }
         end
         run_test!
       end
@@ -40,6 +40,7 @@ RSpec.describe 'api/auth', type: :request do
     end
     post('User sign-in') do
       consumes 'application/json'
+      tags 'Authentication'
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: { email: { type: :string, format: :email }, password: { type: :string } },
