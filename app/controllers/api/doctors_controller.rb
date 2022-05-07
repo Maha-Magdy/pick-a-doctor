@@ -1,13 +1,13 @@
 class Api::DoctorsController < ApplicationController
   def index
-    @doctors = Doctor.all.includes(:appointments)
-    msg = { success: true, data: @doctors }
+    @doctors = Doctor.all
+    msg = { success: true, data: @doctors.map { |doc| image_json(doc) } }
     render json: msg, status: :ok
   end
 
   def show
     @doctor = Doctor.find(params[:id])
-    msg = { success: true, data: @doctor }
+    msg = { success: true, data: image_json(@doctor) }
     render json: msg, status: :ok
   end
 
@@ -45,5 +45,11 @@ class Api::DoctorsController < ApplicationController
 
   def doc_params
     params.permit(:specialization_id, :first_name, :last_name, :email, :phone, :address)
+  end
+
+  private
+
+  def image_json(doc)
+    doc.as_json.merge(profile_image: url_for(doc.profile_image)) if doc.profile_image.attached?
   end
 end
