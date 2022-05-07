@@ -44,10 +44,8 @@ class Api::DoctorsController < ApplicationController
   private
 
   def doc_params
-    params.permit(:specialization_id, :first_name, :last_name, :email, :phone, :address)
+    params.permit(:specialization_id, :first_name, :last_name, :email, :phone, :address, :profile_image)
   end
-
-  private
 
   def image_json(doc)
     doc.as_json.merge(profile_image: url_for(doc.profile_image)) if doc.profile_image.attached?
