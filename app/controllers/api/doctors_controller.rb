@@ -1,4 +1,6 @@
 class Api::DoctorsController < ApplicationController
+  before_action :authenticate_api_user!
+
   def index
     @doctors = Doctor.all
     msg = { success: true, data: @doctors.map { |doc| image_json(doc) } }
