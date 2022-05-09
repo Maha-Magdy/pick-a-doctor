@@ -1,6 +1,21 @@
 require 'swagger_helper'
 
 describe 'Appointments API' do
+  before do
+    User.create(first_name: 'Test1', last_name: 'User', email: 'test@example.com', password: 'password123',
+                date_of_birth: '10-01-2000', password_confirmation: 'password123')
+
+    Specialization.create(id: 1, name: 'Internal medicine')
+
+    Doctor.create( specialization_id: 1,
+                  first_name: 'Doctor-first-name',
+                  last_name: 'Doctor-last-name',
+                  email: 'test@example.com',
+                  phone: '1122334455',
+                  address: 'address example'
+                )
+  end
+
   # rubocop:disable Metrics/BlockLength
   path '/api/appointments' do
     get 'Retrieves all appointments' do
@@ -73,7 +88,7 @@ describe 'Appointments API' do
                    id: { type: :integer },
                    user_id: { type: :integer },
                    doctor_id: { type: :integer },
-                   date: { type: :string },
+                   date: { type: :string, format: :date },
                    notes: { type: :string },
                    created_at: { type: :string },
                    updated_at: { type: :string }

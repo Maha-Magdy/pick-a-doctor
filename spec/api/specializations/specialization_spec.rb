@@ -1,6 +1,7 @@
 require 'swagger_helper'
 
 describe 'Specializations API' do
+
   # rubocop:disable Metrics/BlockLength
   path '/api/specializations' do
     get 'Retrieves all specializations' do
