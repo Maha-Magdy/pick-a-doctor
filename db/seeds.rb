@@ -8,10 +8,11 @@ require 'faker'
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-spec_1 = Specialization.create(id: 1, name: 'Internal medicine')
-spec_2 = Specialization.create(id: 2, name: 'Pediatrics')
-spec_3 = Specialization.create(id: 3, name: 'Dermatology')
-spec_4 = Specialization.create(id: 4, name: 'Radiology')
+# Seed for specializations
+spec_1 = Specialization.create(name: 'Internal medicine')
+spec_2 = Specialization.create(name: 'Pediatrics')
+spec_3 = Specialization.create(name: 'Dermatology')
+spec_4 = Specialization.create(name: 'Radiology')
 
 # Seed for doctors
 10.times do
@@ -25,3 +26,14 @@ spec_4 = Specialization.create(id: 4, name: 'Radiology')
   )
   doc.profile_image.attach(io: File.open("#{Rails.root}/app/assets/img.png"), filename: 'img.png', content_type: 'image/png')
 end
+
+# Seed for appointments
+10.times do
+  appointment = Appointment.create(
+    user_id: Faker::Number.between(from: 1, to: 2),
+    doctor_id: Faker::Number.between(from: 1, to: 4),
+    date: Faker::Date.between(from: '2022-05-1', to: '2022-06-30'),
+    notes: Faker::Lorem.sentence(word_count: 3, supplemental: true, random_words_to_add: 4)
+  )
+end
+

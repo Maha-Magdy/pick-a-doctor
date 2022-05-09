@@ -3,11 +3,11 @@ require 'swagger_helper'
 describe 'Specializations API' do
   # rubocop:disable Metrics/BlockLength
   path '/api/specializations' do
-    get 'Retrives all specializations' do
+    get 'Retrieves all specializations' do
       tags 'Specializations'
       produces 'application/json'
 
-      response '200', 'All specializations retrived' do
+      response '200', 'All specializations retrieved' do
         schema type: :array,
                items: {
                  type: :object,
@@ -57,7 +57,7 @@ describe 'Specializations API' do
 
   # rubocop:disable Metrics/BlockLength
   path '/api/specializations/{id}' do
-    get 'Retrives a specialization' do
+    get 'Retrieves a specific specialization' do
       tags 'Specializations'
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
@@ -81,7 +81,7 @@ describe 'Specializations API' do
       end
     end
 
-    put 'Edits a specialization' do
+    put 'Edits a specific specialization' do
       tags 'Specializations'
       consumes 'application/json'
       produces 'application/json'
@@ -111,7 +111,7 @@ describe 'Specializations API' do
       tags 'Specializations'
       parameter name: :id, in: :path, type: :string
 
-      response '200', 'Specialization has been deleted.' do
+      response '200', 'The specialization has been deleted.' do
         run_test!
       end
 
