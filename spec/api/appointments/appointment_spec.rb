@@ -7,13 +7,12 @@ describe 'Appointments API' do
 
     Specialization.create(id: 1, name: 'Internal medicine')
 
-    Doctor.create( specialization_id: 1,
+    Doctor.create(specialization_id: 1,
                   first_name: 'Doctor-first-name',
                   last_name: 'Doctor-last-name',
                   email: 'test@example.com',
                   phone: '1122334455',
-                  address: 'address example'
-                )
+                  address: 'address example')
   end
 
   # rubocop:disable Metrics/BlockLength
