@@ -294,18 +294,20 @@ paths:
   "/api/auth":
     post:
       summary: User sign-up
+      tags:
+        - Authentication
       parameters: []
       responses:
         '200':
           description: success
+        "422":
+          description: error
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                id:
-                  type: integer
                 first_name:
                   type: string
                 last_name:
@@ -321,16 +323,17 @@ paths:
                   type: string
                   format: date
               required:
-              - id
-              - first_name
-              - last_name
-              - email
-              - password
-              - password_confirmation
-              - date_of_birth
+                - first_name
+                - last_name
+                - email
+                - password
+                - password_confirmation
+                - date_of_birth
   "/api/auth/sign_in":
     post:
       summary: User sign-in
+      tags:
+        - Authentication
       parameters: []
       responses:
         '200':
@@ -349,8 +352,102 @@ paths:
                 password:
                   type: string
               required:
-              - email
-              - password
+                - email
+                - password
+  "/api/doctors":
+    post:
+      summary: Create doctor
+      tags:
+        - Doctors
+      parameters: []
+      responses:
+        "201":
+          description: created
+        "422":
+          description: error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                specialization_id:
+                  type: integer
+                  default: 1
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                address:
+                  type: string
+              required:
+                - id
+                - specialization_id
+                - first_name
+                - last_name
+                - email
+                - address
+    get:
+      summary: Get all doctors
+      tags:
+        - Doctors
+      responses:
+        "200":
+          description: ok
+  "/api/doctors/1":
+    get:
+      summary: Show one doctors
+      tags:
+        - Doctors
+      responses:
+        "200":
+          description: ok
+  "/api/doctors/2":
+    put:
+      summary: Update doctor
+      tags:
+        - Doctors
+      parameters: []
+      responses:
+        "202":
+          description: accepted
+        "422":
+          description: error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                specialization_id:
+                  type: integer
+                  default: 1
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                address:
+                  type: string
+              required:
+                - id
+                - specialization_id
+                - first_name
+                - last_name
+                - email
+                - address
+    delete:
+      summary: Delete a Doctor
+      tags:
+        - Doctors
+      responses:
+        "200":
+          description: ok
   "/api/specializations":
     get:
       summary: Retrieves all specializations
