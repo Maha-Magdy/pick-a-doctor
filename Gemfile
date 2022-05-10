@@ -46,6 +46,8 @@ gem 'omniauth'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem 'localhost'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'database_cleaner-active_record'
@@ -56,5 +58,4 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem 'localhost'
 end
