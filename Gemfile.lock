@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:lynndylanhurley/devise_token_auth.git
+  remote: git@github.com:eapenzacharias/devise_token_auth.git
   revision: 798255ee7e3fee5cfa2fdc519fd90e281bd9b6f5
   specs:
     devise_token_auth (1.2.0)
