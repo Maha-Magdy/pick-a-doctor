@@ -1,1 +1,1 @@
-# pick-a-doctor
+# pick-a-doctor Rails API
