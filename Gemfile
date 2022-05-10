@@ -5,6 +5,7 @@ ruby '3.0.1'
 
 # Adding documentation for APIs
 gem 'rswag'
+gem 'rspec-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
@@ -50,7 +51,6 @@ group :development, :test do
   gem 'database_cleaner-active_record'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
-  gem 'rspec-rails'
 end
 
 group :development do
