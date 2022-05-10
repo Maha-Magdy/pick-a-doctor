@@ -8,9 +8,9 @@ paths:
     get:
       summary: Retrieves all appointments
       tags:
-      - Appointments
+        - Appointments
       responses:
-        '200':
+        "200":
           description: All appointments retrieved
           content:
             application/json:
@@ -34,36 +34,36 @@ paths:
                     updated_at:
                       type: string
                   required:
-                  - id
-                  - user_id
-                  - doctor_id
-                  - date
-                  - notes
-                  - created_at
-                  - updated_at
+                    - id
+                    - user_id
+                    - doctor_id
+                    - date
+                    - notes
+                    - created_at
+                    - updated_at
     post:
       summary: Creates an appointment
       tags:
-      - Appointments
+        - Appointments
       parameters:
-      - name: user_id
-        in: query
-        schema:
-          type: integer
-      - name: doctor_id
-        in: query
-        schema:
-          type: integer
-      - name: date
-        in: query
-        schema:
-          type: string
-      - name: notes
-        in: query
-        schema:
-          type: string
+        - name: user_id
+          in: query
+          schema:
+            type: integer
+        - name: doctor_id
+          in: query
+          schema:
+            type: integer
+        - name: date
+          in: query
+          schema:
+            type: string
+        - name: notes
+          in: query
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: Appointment created
           content:
             application/json:
@@ -85,27 +85,27 @@ paths:
                   updated_at:
                     type: string
                 required:
-                - id
-                - user_id
-                - doctor_id
-                - date
-                - notes
-                - created_at
-                - updated_at
-        '422':
+                  - id
+                  - user_id
+                  - doctor_id
+                  - date
+                  - notes
+                  - created_at
+                  - updated_at
+        "422":
           description: invalid request
   "/api/user_appointments":
     get:
       summary: Retrieves all the appointments for a specific user
       tags:
-      - Appointments
+        - Appointments
       parameters:
-      - name: id
-        in: query
-        schema:
-          type: string
+        - name: id
+          in: query
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -130,27 +130,27 @@ paths:
                     updated_at:
                       type: string
                   required:
-                  - id
-                  - user_id
-                  - doctor_id
-                  - date
-                  - notes
-                  - created_at
-                  - updated_at
-        '422':
+                    - id
+                    - user_id
+                    - doctor_id
+                    - date
+                    - notes
+                    - created_at
+                    - updated_at
+        "422":
           description: invalid request
   "/api/doctor_appointments":
     get:
       summary: Retrieves all the appointments for a specific doctor
       tags:
-      - Appointments
+        - Appointments
       parameters:
-      - name: id
-        in: query
-        schema:
-          type: string
+        - name: id
+          in: query
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -174,6 +174,49 @@ paths:
                     updated_at:
                       type: string
                   required:
+                    - id
+                    - user_id
+                    - doctor_id
+                    - date
+                    - notes
+                    - created_at
+                    - updated_at
+        "422":
+          description: invalid request
+  "/api/appointments/{id}":
+    get:
+      summary: Retrieves a specific appointment
+      tags:
+        - Appointments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  user_id:
+                    type: integer
+                  doctor_id:
+                    type: integer
+                  date:
+                    type: string
+                  notes:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
                   - id
                   - user_id
                   - doctor_id
@@ -181,71 +224,28 @@ paths:
                   - notes
                   - created_at
                   - updated_at
-        '422':
-          description: invalid request
-  "/api/appointments/{id}":
-    get:
-      summary: Retrieves a specific appointment
-      tags:
-      - Appointments
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  user_id:
-                    type: integer
-                  doctor_id:
-                    type: integer
-                  date:
-                    type: string
-                  notes:
-                    type: string
-                  created_at:
-                    type: string
-                  updated_at:
-                    type: string
-                required:
-                - id
-                - user_id
-                - doctor_id
-                - date
-                - notes
-                - created_at
-                - updated_at
-        '422':
+        "422":
           description: invalid request
     put:
       summary: Edits a specific appointment
       tags:
-      - Appointments
+        - Appointments
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: date
-        in: query
-        schema:
-          type: string
-      - name: notes
-        in: query
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          schema:
+            type: string
+        - name: notes
+          in: query
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -267,29 +267,29 @@ paths:
                   updated_at:
                     type: string
                 required:
-                - id
-                - user_id
-                - doctor_id
-                - date
-                - notes
-                - created_at
-                - updated_at
-        '422':
+                  - id
+                  - user_id
+                  - doctor_id
+                  - date
+                  - notes
+                  - created_at
+                  - updated_at
+        "422":
           description: invalid request
     delete:
       summary: Destroys an appointment
       tags:
-      - Appointments
+        - Appointments
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: The appointment has been deleted.
-        '422':
+        "422":
           description: invalid request
   "/api/auth":
     post:
@@ -298,7 +298,7 @@ paths:
         - Authentication
       parameters: []
       responses:
-        '200':
+        "200":
           description: success
         "422":
           description: error
@@ -336,9 +336,9 @@ paths:
         - Authentication
       parameters: []
       responses:
-        '200':
+        "200":
           description: success
-        '401':
+        "401":
           description: fail
       requestBody:
         content:
@@ -397,20 +397,31 @@ paths:
       responses:
         "200":
           description: ok
-  "/api/doctors/1":
+  "/api/doctors/{id}":
     get:
       summary: Show one doctors
       tags:
         - Doctors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: ok
-  "/api/doctors/2":
+  "/api/doctors/{id}":
     put:
       summary: Update doctor
       tags:
         - Doctors
-      parameters: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "202":
           description: accepted
@@ -445,6 +456,12 @@ paths:
       summary: Delete a Doctor
       tags:
         - Doctors
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: ok
@@ -452,9 +469,9 @@ paths:
     get:
       summary: Retrieves all specializations
       tags:
-      - Specializations
+        - Specializations
       responses:
-        '200':
+        "200":
           description: All specializations retrieved
           content:
             application/json:
@@ -472,21 +489,21 @@ paths:
                     updated_at:
                       type: string
                   required:
-                  - id
-                  - name
-                  - created_at
-                  - updated_at
+                    - id
+                    - name
+                    - created_at
+                    - updated_at
     post:
       summary: Creates a specialization
       tags:
-      - Specializations
+        - Specializations
       parameters:
-      - name: name
-        in: query
-        schema:
-          type: string
+        - name: name
+          in: query
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: specialization created
           content:
             application/json:
@@ -502,25 +519,25 @@ paths:
                   updated_at:
                     type: string
                 required:
-                - id
-                - name
-                - created_at
-                - updated_at
-        '422':
+                  - id
+                  - name
+                  - created_at
+                  - updated_at
+        "422":
           description: invalid request
   "/api/specializations/{id}":
     get:
       summary: Retrieves a specific specialization
       tags:
-      - Specializations
+        - Specializations
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: specialization edited
           content:
             application/json:
@@ -536,28 +553,28 @@ paths:
                   updated_at:
                     type: string
                 required:
-                - id
-                - name
-                - created_at
-                - updated_at
-        '422':
+                  - id
+                  - name
+                  - created_at
+                  - updated_at
+        "422":
           description: invalid request
     put:
       summary: Edits a specific specialization
       tags:
-      - Specializations
+        - Specializations
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: name
-        in: query
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: query
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: specialization edited
           content:
             application/json:
@@ -573,31 +590,31 @@ paths:
                   updated_at:
                     type: string
                 required:
-                - id
-                - name
-                - created_at
-                - updated_at
-        '422':
+                  - id
+                  - name
+                  - created_at
+                  - updated_at
+        "422":
           description: invalid request
     delete:
       summary: Destroys a specialization
       tags:
-      - Specializations
+        - Specializations
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: The specialization has been deleted.
-        '422':
+        "422":
           description: invalid request
-        '404':
+        "404":
           description: Couldn't find Specialization with 'id'=-
 servers:
-- url: http://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: www.example.com

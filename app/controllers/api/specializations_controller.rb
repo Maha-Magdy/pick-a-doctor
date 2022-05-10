@@ -25,7 +25,8 @@ class Api::SpecializationsController < ApplicationController
 
   def show
     @specialization = Specialization.find(params[:id])
-    json_response(@specialization)
+    msg = { success: true, data: @specialization, doctors: @specialization.doctors }
+    render json: msg, status: :ok
   end
 
   def edit
