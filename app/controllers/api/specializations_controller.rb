@@ -57,6 +57,6 @@ class Api::SpecializationsController < ApplicationController
   private
 
   def specialization_params
-    params.permit(:name)
+    params.permit(:name, :image)
   end
 end

@@ -9,10 +9,17 @@ require 'faker'
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Seed for specializations
-spec_1 = Specialization.create(name: 'Internal medicine')
+spec_1 = Specialization.create(name: 'General Medicine')
+spec_1.image.attach(io: File.open("#{Rails.root}/app/assets/general-medicine.jpg"), filename: 'general-medicine.jpg', content_type: 'image/jpg')
+
 spec_2 = Specialization.create(name: 'Pediatrics')
+spec_2.image.attach(io: File.open("#{Rails.root}/app/assets/pediatrician-doctor.jpg"), filename: 'pediatrician-doctor.jpg', content_type: 'image/jpg')
+
 spec_3 = Specialization.create(name: 'Dermatology')
+spec_3.image.attach(io: File.open("#{Rails.root}/app/assets/dermatologist"), filename: 'dermatologist.jpg', content_type: 'image/jpg')
+
 spec_4 = Specialization.create(name: 'Radiology')
+spec_4.image.attach(io: File.open("#{Rails.root}/app/assets/obstetrics"), filename: 'obstetrics.jpg', content_type: 'image/jpg')
 
 # Seed for doctors
 10.times do
