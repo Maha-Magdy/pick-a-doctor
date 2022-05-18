@@ -44,6 +44,7 @@ gem 'rack-cors'
 gem 'devise_token_auth', git: 'https://github.com/eapenzacharias/devise_token_auth.git'
 gem 'omniauth'
 
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'localhost'
@@ -52,7 +53,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'database_cleaner-active_record'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 end
 
 group :development do

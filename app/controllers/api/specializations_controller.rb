@@ -10,7 +10,7 @@ class Api::SpecializationsController < ApplicationController
 
   def index
     @specializations = Specialization.all
-    @response = @specializations.map { |specialization| image_json(specialization)}
+    @response = @specializations.map { |specialization| image_json(specialization) }
     json_response(@response)
   end
 
