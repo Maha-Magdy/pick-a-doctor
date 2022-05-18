@@ -10,7 +10,8 @@ class Api::SpecializationsController < ApplicationController
 
   def index
     @specializations = Specialization.all
-    json_response(@specializations)
+    @response = @specializations.map { |specialization| image_json(specialization)}
+    json_response(@response)
   end
 
   def create
@@ -58,5 +59,9 @@ class Api::SpecializationsController < ApplicationController
 
   def specialization_params
     params.permit(:name, :image)
+  end
+
+  def image_json(specialization)
+    specialization.as_json.merge(image: url_for(specialization.image)) if specialization.image.attached?
   end
 end
