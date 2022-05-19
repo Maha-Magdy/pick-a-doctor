@@ -1,7 +1,7 @@
 class Api::AppointmentsController < ApplicationController
   include Response
 
-  # before_action :authenticate_api_user!
+  before_action :authenticate_api_user!
 
   def index
     @appointments = Appointment.all
