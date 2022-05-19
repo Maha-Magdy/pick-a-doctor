@@ -10,7 +10,7 @@ class Api::SpecializationsController < ApplicationController
 
   def index
     @specializations = Specialization.all
-    @response = @specializations.map { |specialization| image_json(specialization) }
+    @response = @specializations.map { |specialization| profile_image_json(specialization) }
     json_response(@response)
   end
 
@@ -26,7 +26,7 @@ class Api::SpecializationsController < ApplicationController
 
   def show
     @specialization = Specialization.find(params[:id])
-    msg = { success: true, data: @specialization, doctors: @specialization.doctors }
+    msg = { success: true, data: @specialization, doctors: @specialization.doctors.map { |doc| profile_image_json(doc) } }
     render json: msg, status: :ok
   end
 
@@ -63,5 +63,9 @@ class Api::SpecializationsController < ApplicationController
 
   def image_json(specialization)
     specialization.as_json.merge(image: url_for(specialization.image)) if specialization.image.attached?
+  end
+
+  def profile_image_json(doc)
+    doc.as_json.merge(profile_image: url_for(doc.profile_image)) if doc.profile_image.attached?
   end
 end
