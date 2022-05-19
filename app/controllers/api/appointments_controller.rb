@@ -1,7 +1,7 @@
 class Api::AppointmentsController < ApplicationController
   include Response
 
-  before_action :authenticate_api_user!
+  # before_action :authenticate_api_user!
 
   def index
     @appointments = Appointment.all
@@ -10,7 +10,7 @@ class Api::AppointmentsController < ApplicationController
 
   def user_appointments
     @appointments = Appointment.where(user_id: params[:id]).ordered_by_most_recent
-    json_response(@appointments)
+    json_response(@appointments.map { |appointment| merge_json(appointment) })
   end
 
   def doctor_appointments
@@ -58,5 +58,9 @@ class Api::AppointmentsController < ApplicationController
 
   def appointment_params
     params.permit(:user_id, :doctor_id, :date, :notes)
+  end
+
+  def merge_json(appointment)
+    appointment.as_json.merge(doctor: "#{appointment.doctor.first_name} #{appointment.doctor.last_name}")
   end
 end
