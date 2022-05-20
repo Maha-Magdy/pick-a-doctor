@@ -9,6 +9,7 @@ class ApplicationController < ActionController::API
   def update_allowed_parameters
     devise_parameter_sanitizer.permit(:sign_up,
                                       keys: %i[first_name last_name password password_confirmation email date_of_birth])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[email first_name last_name date_of_birth])
   end
   include ActionController::MimeResponds
 end

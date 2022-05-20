@@ -26,7 +26,9 @@ class Api::SpecializationsController < ApplicationController
 
   def show
     @specialization = Specialization.find(params[:id])
-    msg = { success: true, data: @specialization, doctors: @specialization.doctors.map { |doc| profile_image_json(doc) } }
+    msg = { success: true, data: @specialization, doctors: @specialization.doctors.map do |doc|
+                                                             profile_image_json(doc)
+                                                           end }
     render json: msg, status: :ok
   end
 
