@@ -8,6 +8,9 @@ require 'faker'
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.create(first_name: 'User1', last_name: 'Test', email: 'user1@test.com', password: '1234567', date_of_birth: '01-01-1996')
+User.create(first_name: 'User2', last_name: 'Test', email: 'user2@test.com', password: '1234567', date_of_birth: '01-01-1996')
+
 # Seed for specializations
 spec_1 = Specialization.create(name: 'General Medicine')
 spec_1.image.attach(io: File.open("#{Rails.root}/app/assets/general-medicine.jpg"), filename: 'general-medicine.jpg', content_type: 'image/jpg')
