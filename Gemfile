@@ -47,6 +47,8 @@ gem 'omniauth'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem 'google-cloud-storage'
+
 gem 'localhost'
 
 group :development, :test do
