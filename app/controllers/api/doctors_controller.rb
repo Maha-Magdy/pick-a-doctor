@@ -1,9 +1,9 @@
 class Api::DoctorsController < ApplicationController
-  before_action :authenticate_api_user!
+  # before_action :authenticate_api_user!
 
   def index
     @doctors = Doctor.all
-    msg = { success: true, data: @doctors.map { |doc| image_json(doc) } }
+    msg = { success: true, data: @doctors.map { |doc| merge_json(doc) } }
     render json: msg, status: :ok
   end
 
@@ -50,7 +50,7 @@ class Api::DoctorsController < ApplicationController
   end
 
   def merge_json(doc)
-    doc.as_json.merge(profile_image: url_for(doc.profile_image)) if doc.profile_image.attached?
-    doc.as_json.merge(specialization: doc.specialization.name)
+    json_obj = doc.as_json.merge(profile_image: url_for(doc.profile_image)) if doc.profile_image.attached?
+    json_obj.merge(specialization: doc.specialization.name)
   end
 end

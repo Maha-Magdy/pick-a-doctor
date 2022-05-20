@@ -48,6 +48,7 @@ gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'google-cloud-storage'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 gem 'localhost'
 
