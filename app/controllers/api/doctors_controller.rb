@@ -1,5 +1,5 @@
 class Api::DoctorsController < ApplicationController
-  # before_action :authenticate_api_user!
+  before_action :authenticate_api_user!
 
   def index
     @doctors = Doctor.all
@@ -9,7 +9,7 @@ class Api::DoctorsController < ApplicationController
 
   def show
     @doctor = Doctor.find(params[:id])
-    msg = { success: true, data: image_json(@doctor) }
+    msg = { success: true, data: merge_json(@doctor) }
     render json: msg, status: :ok
   end
 
@@ -49,7 +49,8 @@ class Api::DoctorsController < ApplicationController
     params.permit(:specialization_id, :first_name, :last_name, :email, :phone, :address, :profile_image)
   end
 
-  def image_json(doc)
+  def merge_json(doc)
     doc.as_json.merge(profile_image: url_for(doc.profile_image)) if doc.profile_image.attached?
+    doc.as_json.merge(specialization: doc.specialization.name)
   end
 end
